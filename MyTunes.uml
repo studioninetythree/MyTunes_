@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>MyTunes.domain.User</OriginalElement>
+  <nodes>
+    <node x="89.84086021505368" y="681.0">MyTunes.domain.ShoppingCart</node>
+    <node x="344.41666666666663" y="458.0">MyTunes.domain.Album</node>
+    <node x="0.0" y="100.0">MyTunes.domain.User</node>
+    <node x="498.55215053763436" y="100.0">MyTunes.domain.RecordStudio</node>
+    <node x="625.5231182795699" y="670.0">MyTunes.domain.Band</node>
+    <node x="511.05215053763436" y="268.0">MyTunes.domain.Artist</node>
+    <node x="400.0618279569892" y="860.0">MyTunes.domain.Order</node>
+    <node x="307.05215053763436" y="290.0">MyTunes.domain.Reviewer</node>
+    <node x="746.5521505376344" y="144.0">MyTunes.domain.Performer</node>
+    <node x="272.8408602150537" y="681.0">MyTunes.domain.Genre</node>
+    <node x="398.0618279569892" y="984.0">MyTunes.domain.DailyPurchaseRecord</node>
+    <node x="296.4814516129032" y="0.0">java.io.Serializable</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="MyTunes.domain.Reviewer" target="MyTunes.domain.Album">
+      <point x="46.0" y="48.0" />
+      <point x="445.05215053763436" y="438.0" />
+      <point x="461.41666666666663" y="438.0" />
+      <point x="0.0" y="-81.0" />
+    </edge>
+    <edge source="MyTunes.domain.Order" target="java.io.Serializable">
+      <point x="42.75" y="-37.0" />
+      <point x="528.3118279569892" y="835.0" />
+      <point x="844.0521505376344" y="835.0" />
+      <point x="844.0521505376344" y="50.0" />
+      <point x="382.7314516129032" y="50.0" />
+      <point x="40.25" y="15.0" />
+    </edge>
+    <edge source="MyTunes.domain.Album" target="MyTunes.domain.Reviewer">
+      <point x="-46.80000000000001" y="-81.0" />
+      <point x="414.6166666666667" y="428.0" />
+      <point x="353.05215053763436" y="428.0" />
+      <point x="-46.0" y="48.0" />
+    </edge>
+    <edge source="MyTunes.domain.User" target="java.io.Serializable">
+      <point x="0.0" y="-59.0" />
+      <point x="91.0" y="50.0" />
+      <point x="302.2314516129032" y="50.0" />
+      <point x="-40.25" y="15.0" />
+    </edge>
+    <edge source="MyTunes.domain.Genre" target="java.io.Serializable">
+      <point x="-47.5" y="-59.0" />
+      <point x="320.3408602150537" y="640.0" />
+      <point x="274.10215053763443" y="640.0" />
+      <point x="274.10215053763443" y="70.0" />
+      <point x="325.2314516129032" y="70.0" />
+      <point x="-17.25" y="15.0" />
+    </edge>
+    <edge source="MyTunes.domain.Band" target="MyTunes.domain.Performer">
+      <point x="59.66666666666663" y="-70.0" />
+      <point x="774.6897849462365" y="650.0" />
+      <point x="811.8021505376344" y="650.0" />
+      <point x="21.75" y="15.0" />
+    </edge>
+    <edge source="MyTunes.domain.Artist" target="MyTunes.domain.Performer">
+      <point x="59.66666666666663" y="-70.0" />
+      <point x="660.218817204301" y="248.0" />
+      <point x="768.3021505376344" y="248.0" />
+      <point x="-21.75" y="15.0" />
+    </edge>
+    <edge source="MyTunes.domain.Genre" target="MyTunes.domain.Album">
+      <point x="47.5" y="-59.0" />
+      <point x="415.3408602150537" y="650.0" />
+      <point x="461.41666666666663" y="650.0" />
+      <point x="0.0" y="81.0" />
+    </edge>
+    <edge source="MyTunes.domain.Band" target="MyTunes.domain.Album">
+      <point x="-59.66666666666663" y="-70.0" />
+      <point x="655.3564516129032" y="650.0" />
+      <point x="539.4166666666666" y="650.0" />
+      <point x="78.0" y="81.0" />
+    </edge>
+    <edge source="MyTunes.domain.ShoppingCart" target="java.io.Serializable">
+      <point x="0.0" y="-59.0" />
+      <point x="171.34086021505368" y="650.0" />
+      <point x="192.5" y="650.0" />
+      <point x="192.5" y="60.0" />
+      <point x="313.7314516129032" y="60.0" />
+      <point x="-28.75" y="15.0" />
+    </edge>
+    <edge source="MyTunes.domain.RecordStudio" target="java.io.Serializable">
+      <point x="0.0" y="-59.0" />
+      <point x="612.5521505376344" y="70.0" />
+      <point x="359.7314516129032" y="70.0" />
+      <point x="17.25" y="15.0" />
+    </edge>
+    <edge source="MyTunes.domain.RecordStudio" target="MyTunes.domain.Artist">
+      <point x="0.0" y="59.0" />
+      <point x="612.5521505376344" y="248.0" />
+      <point x="600.5521505376344" y="248.0" />
+      <point x="0.0" y="-70.0" />
+    </edge>
+    <edge source="MyTunes.domain.Artist" target="MyTunes.domain.Album">
+      <point x="44.75" y="70.0" />
+      <point x="645.3021505376344" y="438.0" />
+      <point x="555.0166666666667" y="438.0" />
+      <point x="93.60000000000002" y="-81.0" />
+    </edge>
+    <edge source="MyTunes.domain.ShoppingCart" target="MyTunes.domain.Album">
+      <point x="54.33333333333334" y="-59.0" />
+      <point x="225.67419354838702" y="650.0" />
+      <point x="383.41666666666663" y="650.0" />
+      <point x="-78.0" y="81.0" />
+    </edge>
+    <edge source="MyTunes.domain.Album" target="java.io.Serializable">
+      <point x="-93.60000000000002" y="-81.0" />
+      <point x="367.8166666666666" y="438.0" />
+      <point x="296.55215053763436" y="438.0" />
+      <point x="296.55215053763436" y="80.0" />
+      <point x="336.7314516129032" y="80.0" />
+      <point x="-5.75" y="15.0" />
+    </edge>
+    <edge source="MyTunes.domain.Album" target="MyTunes.domain.Artist">
+      <point x="46.80000000000001" y="-81.0" />
+      <point x="508.2166666666667" y="428.0" />
+      <point x="555.8021505376344" y="428.0" />
+      <point x="-44.75" y="70.0" />
+    </edge>
+    <edge source="MyTunes.domain.Band" target="MyTunes.domain.RecordStudio">
+      <point x="0.0" y="-70.0" />
+      <point x="715.0231182795699" y="650.0" />
+      <point x="739.3564516129031" y="650.0" />
+      <point x="739.3564516129031" y="238.0" />
+      <point x="688.5521505376344" y="238.0" />
+      <point x="76.0" y="59.0" />
+    </edge>
+    <edge source="MyTunes.domain.ShoppingCart" target="MyTunes.domain.User">
+      <point x="-54.33333333333337" y="-59.0" />
+      <point x="117.00752688172031" y="650.0" />
+      <point x="91.0" y="650.0" />
+      <point x="0.0" y="59.0" />
+    </edge>
+    <edge source="MyTunes.domain.Order" target="MyTunes.domain.ShoppingCart">
+      <point x="-42.75" y="-37.0" />
+      <point x="442.8118279569892" y="835.0" />
+      <point x="171.34086021505368" y="835.0" />
+      <point x="0.0" y="59.0" />
+    </edge>
+    <edge source="MyTunes.domain.Performer" target="java.io.Serializable">
+      <point x="0.0" y="-15.0" />
+      <point x="790.0521505376344" y="60.0" />
+      <point x="371.2314516129032" y="60.0" />
+      <point x="28.75" y="15.0" />
+    </edge>
+    <edge source="MyTunes.domain.Artist" target="MyTunes.domain.RecordStudio">
+      <point x="-59.66666666666663" y="-70.0" />
+      <point x="540.8854838709677" y="248.0" />
+      <point x="536.5521505376344" y="248.0" />
+      <point x="-76.0" y="59.0" />
+    </edge>
+    <edge source="MyTunes.domain.DailyPurchaseRecord" target="MyTunes.domain.Order">
+      <point x="0.0" y="-37.0" />
+      <point x="0.0" y="37.0" />
+    </edge>
+    <edge source="MyTunes.domain.Reviewer" target="java.io.Serializable">
+      <point x="0.0" y="-48.0" />
+      <point x="399.05215053763436" y="80.0" />
+      <point x="348.2314516129032" y="80.0" />
+      <point x="5.75" y="15.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.5398886827458256" x="422.5" y="529.0" />
+  <SelectedNodes>
+    <node>MyTunes.domain.User</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Fields</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

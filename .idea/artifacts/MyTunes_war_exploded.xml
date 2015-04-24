@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="MyTunes:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/MyTunes_war_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="MyTunes/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="MyTunes" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
