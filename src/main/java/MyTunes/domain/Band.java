@@ -1,49 +1,47 @@
 package MyTunes.domain;
 
+import javax.persistence.*;
 import java.util.List;
 
 /**
  * Created by Dillan on 4/23/2015.
  */
 @Embeddable
-public class Band implements Performer
-{
-    private String id;
+public class Band implements IPerformer {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(unique = true)
+    private int bandId;
     private String name;
     private String description;
     private List<Album> albumList;
     private RecordStudio recordStudio;
 
     public Band(Builder builder) {
-        this.id = builder.id;
+        this.bandId = builder.bandId;
         this.name = builder.name;
         this.description = builder.description;
         this.albumList = builder.albumList;
         this.recordStudio = builder.recordStudio;
     }
 
-    public String getId()
-    {
-        return id;
+    public int getId() {
+        return bandId;
     }
 
-    public String getName()
-    {
+    public String getName() {
         return name;
     }
 
-    public String getDescription()
-    {
+    public String getDescription() {
         return description;
     }
 
-    public List<Album> getAlbumList()
-    {
+    public List<Album> getAlbumList() {
         return albumList;
     }
 
-    public RecordStudio getRecordStudio()
-    {
+    public RecordStudio getRecordStudio() {
         return recordStudio;
     }
 
@@ -52,25 +50,28 @@ public class Band implements Performer
     //              Inner Builder Class
     // **********************************************************************
 
-    public static class Builder
-    {
-        private String id;
+    public static class Builder {
+        private int bandId;
         private String name;
         private String description;
         private List<Album> albumList;
         private RecordStudio recordStudio;
 
-        public Builder(String id, String name, String description, List<Album> albumList, RecordStudio recordStudio)
-        {
-            this.id = id;
+        public Builder(int bandId, String name, String description, List<Album> albumList, RecordStudio recordStudio) {
+            this.bandId = bandId;
             this.name = name;
             this.description = description;
             this.albumList = albumList;
             this.recordStudio = recordStudio;
         }
 
-        public Builder copy(Band band){
-            this.id = band.id;
+        public Builder(String name, String description) {
+            this.name = name;
+            this.description = description;
+        }
+
+        public Builder copy(Band band) {
+            this.bandId = band.bandId;
             this.name = band.name;
             this.description = band.description;
             this.albumList = band.albumList;
@@ -78,7 +79,32 @@ public class Band implements Performer
             return this;
         }
 
-        public Band build(){
+        public Builder bandId(int artistId) {
+            this.bandId = artistId;
+            return this;
+        }
+
+        public Builder bandName(String name) {
+            this.name = name;
+            return this;
+        }
+
+        public Builder bandDescription(String bandDescription) {
+            this.description = bandDescription;
+            return this;
+        }
+
+        public Builder bandAlbumList(List<Album> albumList) {
+            this.albumList = albumList;
+            return this;
+        }
+
+        public Builder bandRecordStudio(RecordStudio recordStudio) {
+            this.recordStudio = recordStudio;
+            return this;
+        }
+
+        public Band build() {
             return new Band(this);
         }
     }

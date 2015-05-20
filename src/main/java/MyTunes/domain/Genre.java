@@ -1,8 +1,7 @@
 package MyTunes.domain;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.io.Serializable;
-import java.sql.Date;
 import java.util.List;
 
 /**
@@ -10,7 +9,10 @@ import java.util.List;
  */
 @Embeddable
 public class Genre implements Serializable {
-    private String genreID;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(unique = true)
+    private int genreID;
     private String genreName;
     private String genreDescription;
     private List<Album> albums;
@@ -22,23 +24,19 @@ public class Genre implements Serializable {
         this.albums = builder.albums;
     }
 
-    public String getGenreID()
-    {
+    public int getGenreID() {
         return genreID;
     }
 
-    public String getGenreName()
-    {
+    public String getGenreName() {
         return genreName;
     }
 
-    public String getGenreDescription()
-    {
+    public String getGenreDescription() {
         return genreDescription;
     }
 
-    public List<Album> getAlbums()
-    {
+    public List<Album> getAlbums() {
         return albums;
     }
 
@@ -47,22 +45,26 @@ public class Genre implements Serializable {
     //              Inner Builder Class
     // **********************************************************************
 
-    public static class Builder
-    {
-        private String genreID;
+    public static class Builder {
+        private int genreID;
         private String genreName;
         private String genreDescription;
         private List<Album> albums;
 
-        public Builder(String genreID, String genreName, String genreDescription, List<Album> albums)
-        {
+        public Builder(int genreID, String genreName, String genreDescription, List<Album> albums) {
             this.genreID = genreID;
             this.genreName = genreName;
             this.genreDescription = genreDescription;
             this.albums = albums;
         }
 
-        public Builder copy(Genre genre){
+        public Builder(String genreName, String genreDescription, List<Album> albums) {
+            this.genreName = genreName;
+            this.genreDescription = genreDescription;
+            this.albums = albums;
+        }
+
+        public Builder copy(Genre genre) {
             this.genreID = genre.genreID;
             this.genreName = genre.genreName;
             this.genreDescription = genre.genreDescription;
@@ -70,8 +72,7 @@ public class Genre implements Serializable {
             return this;
         }
 
-        public Genre build()
-        {
+        public Genre build() {
             return new Genre(this);
         }
     }

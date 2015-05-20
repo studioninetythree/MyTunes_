@@ -1,6 +1,9 @@
 package MyTunes.services;
 
 import MyTunes.domain.Album;
+import MyTunes.repository.IRepoAlbum;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,17 +13,16 @@ import java.util.List;
  */
 
 @Service
-public class AlbumServiceImp implements AlbumService
-{
+public class AlbumServiceImp implements IAlbumService {
     @Autowired
-    CourseRepository repository;
-    public List<Album> getAlbums()
-    {
+    IRepoAlbum repository;
+
+    public List<Album> getAlbums() {
         List<Album> allAlbums = new ArrayList<Album>();
 
-        Iterable<Album> courses = repository.findAll();
-        for (Album course : courses) {
-            allAlbums.add(course);
+        Iterable<Album> albums = repository.findAll();
+        for (Album album : albums) {
+            allAlbums.add(album);
         }
         return allAlbums;
     }

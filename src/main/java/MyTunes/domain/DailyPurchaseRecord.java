@@ -1,29 +1,34 @@
 package MyTunes.domain;
 
-import java.sql.Date;
+import javax.persistence.*;
 import java.util.List;
 
 /**
  * Created by Dillan on 4/17/2015.
  */
 @Entity
-public class DailyPurchaseRecord
-{
+public class DailyPurchaseRecord {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(unique = true)
+    private int id;
     private List<Order> orders;
-    private Date date;
+    private java.util.Date date;
 
     public DailyPurchaseRecord(Builder builder) {
         this.orders = builder.orders;
         this.date = builder.date;
     }
 
-    public List<Order> getOrders()
-    {
+    public int getId() {
+        return id;
+    }
+
+    public List<Order> getOrders() {
         return orders;
     }
 
-    public Date getDate()
-    {
+    public java.util.Date getDate() {
         return date;
     }
 
@@ -32,26 +37,25 @@ public class DailyPurchaseRecord
     //              Inner Builder Class
     // **********************************************************************
 
-    public static class Builder
-    {
+    public static class Builder {
+        private int id;
         private List<Order> orders;
-        private Date date;
+        private java.util.Date date;
 
-        public Builder(List<Order> orders, Date date)
-        {
+        public Builder(List<Order> orders, java.util.Date date) {
             this.orders = orders;
             this.date = date;
         }
 
-        public Builder copy(DailyPurchaseRecord dailyPurchaseRecord){
+        public Builder copy(DailyPurchaseRecord dailyPurchaseRecord) {
             this.orders = dailyPurchaseRecord.orders;
             this.date = dailyPurchaseRecord.date;
             return this;
         }
 
-        public DailyPurchaseRecord build()
-        {
+        public DailyPurchaseRecord build() {
             return new DailyPurchaseRecord(this);
         }
+
     }
 }

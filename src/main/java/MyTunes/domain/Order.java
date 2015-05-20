@@ -1,21 +1,29 @@
 package MyTunes.domain;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 /**
  * Created by 211299820 on 16/04/15.
  */
 @Entity
 public class Order implements Serializable {
-    private ShoppingCart cart ;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(unique = true)
+    private int id;
+    private ShoppingCart cart;
     private Date purchaseDate;
 
     public Order(Builder builder) {
+        this.id = builder.id;
         this.cart = builder.cart;
         this.purchaseDate = builder.purchaseDate;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public ShoppingCart getCart() {
@@ -30,25 +38,31 @@ public class Order implements Serializable {
     //              Inner Builder Class
     // **********************************************************************
 
-    public static class Builder
-    {
-        private ShoppingCart cart ;
+    public static class Builder {
+
+        private int id;
+        private ShoppingCart cart;
         private Date purchaseDate;
 
-        public Builder(ShoppingCart cart, Date purchaseDate)
-        {
+        public Builder(int id, ShoppingCart cart, Date purchaseDate) {
+            this.id = id;
             this.cart = cart;
             this.purchaseDate = purchaseDate;
         }
 
-        public Builder copy(Order order){
+        public Builder(ShoppingCart cart, Date purchaseDate) {
+            this.cart = cart;
+            this.purchaseDate = purchaseDate;
+        }
+
+        public Builder copy(Order order) {
+            this.id = order.id;
             this.cart = order.cart;
             this.purchaseDate = order.purchaseDate;
             return this;
         }
 
-        public Order build()
-        {
+        public Order build() {
             return new Order(this);
         }
     }

@@ -1,6 +1,6 @@
 package MyTunes.domain;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.security.Timestamp;
 import java.util.List;
@@ -10,6 +10,10 @@ import java.util.List;
  */
 @Embeddable
 public class ShoppingCart implements Serializable {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(unique = true)
     private User user;
     private List<Album> albumsPurchased;
     private double totalPrice;
@@ -22,23 +26,19 @@ public class ShoppingCart implements Serializable {
         this.timestamp = builder.timestamp;
     }
 
-    public User getUser()
-    {
+    public User getUser() {
         return user;
     }
 
-    public List<Album> getAlbumOrdered()
-    {
+    public List<Album> getAlbumOrdered() {
         return albumsPurchased;
     }
 
-    public double getTotalPrice()
-    {
+    public double getTotalPrice() {
         return totalPrice;
     }
 
-    public Timestamp getTimestamp()
-    {
+    public Timestamp getTimestamp() {
         return timestamp;
     }
 
@@ -47,22 +47,20 @@ public class ShoppingCart implements Serializable {
     //              Inner Builder Class
     // **********************************************************************
 
-    public static class Builder
-    {
+    public static class Builder {
         private User user;
         private List<Album> albumsPurchased;
         private double totalPrice;
         private Timestamp timestamp;
 
-        public Builder(User user, List<Album> albumsPurchased, double totalPrice, Timestamp timestamp)
-        {
+        public Builder(User user, List<Album> albumsPurchased, double totalPrice, Timestamp timestamp) {
             this.user = user;
             this.albumsPurchased = albumsPurchased;
             this.totalPrice = totalPrice;
             this.timestamp = timestamp;
         }
 
-        public Builder copy(ShoppingCart shoppingCart){
+        public Builder copy(ShoppingCart shoppingCart) {
             this.user = shoppingCart.user;
             this.albumsPurchased = shoppingCart.albumsPurchased;
             this.totalPrice = shoppingCart.totalPrice;
@@ -70,8 +68,7 @@ public class ShoppingCart implements Serializable {
             return this;
         }
 
-        public ShoppingCart build()
-        {
+        public ShoppingCart build() {
             return new ShoppingCart(this);
         }
     }

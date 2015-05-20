@@ -1,8 +1,6 @@
 package MyTunes.domain;
 
-import javax.annotation.Generated;
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.io.Serializable;
 
 /**
@@ -10,21 +8,24 @@ import java.io.Serializable;
  */
 @Entity
 public class Album implements Serializable {
-    @Column(unique = true) private String albumID;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(unique = true)
+    private int albumID;
     private String albumName;
     private String albumDescription;
-    private Artist artist;
+    private IPerformer performer;
     private Reviewer reviewer;
     private Double price;
 
     public Album(Builder builder) {
-        albumID = builder.albumID;
         albumName = builder.albumName;
         albumDescription = builder.albumDescription;
-        artist = builder.artist;
+        performer = builder.performer;
         price = builder.price;
     }
-    public String getAlbumID() {
+
+    public int getAlbumID() {
         return albumID;
     }
 
@@ -36,12 +37,11 @@ public class Album implements Serializable {
         return albumDescription;
     }
 
-    public Artist getArtistId() {
-        return artist;
+    public IPerformer getArtist() {
+        return performer;
     }
 
-    public Double getPrice()
-    {
+    public Double getPrice() {
         return price;
     }
 
@@ -50,36 +50,73 @@ public class Album implements Serializable {
     //              Inner Builder Class
     // **********************************************************************
 
-    public static class Builder
-    {
-        private String albumID;
+    public static class Builder {
+        private int albumID;
         private String albumName;
         private String albumDescription;
-        private Artist artist;
+        private IPerformer performer;
         private Reviewer reviewer;
         private Double price;
 
-        public Builder(String albumID, String albumName, String albumDescription, Artist artist, Reviewer reviewer, Double price)
-        {
+        public Builder(String albumName, String albumDescription, IPerformer performer, Reviewer reviewer, Double price) {
             this.albumID = albumID;
             this.albumName = albumName;
             this.albumDescription = albumDescription;
-            this.artist = artist;
+            this.performer = performer;
             this.reviewer = reviewer;
             this.price = price;
         }
 
-        public Builder copy(Album album){
+        public Builder(String name) {
+            this.albumName = name;
+        }
+
+        public Builder(String name, IPerformer performer) {
+            this.albumName = name;
+            this.performer = performer;
+        }
+
+        public Builder copy(Album album) {
             this.albumID = album.albumID;
             this.albumName = album.albumName;
             this.albumDescription = album.albumDescription;
-            this.artist = album.artist;
+            this.performer = album.performer;
             this.price = album.price;
             this.reviewer = album.reviewer;
             return this;
         }
 
-        public Album build(){
+        public Builder albumId(int albumID) {
+            this.albumID = albumID;
+            return this;
+        }
+
+        public Builder albumName(String albumName) {
+            this.albumName = albumName;
+            return this;
+        }
+
+        public Builder albumDecription(String albumDescription) {
+            this.albumDescription = albumDescription;
+            return this;
+        }
+
+        public Builder albumArtist(IPerformer performer) {
+            this.performer = performer;
+            return this;
+        }
+
+        public Builder albumReviewer(Reviewer reviewer) {
+            this.reviewer = reviewer;
+            return this;
+        }
+
+        public Builder albumPrice(double price) {
+            this.price = price;
+            return this;
+        }
+
+        public Album build() {
             return new Album(this);
         }
     }

@@ -1,8 +1,7 @@
 package MyTunes.domain;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -10,7 +9,10 @@ import java.util.List;
  */
 @Embeddable
 public class RecordStudio implements Serializable {
-    private String recordStudioID;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(unique = true)
+    private int recordStudioID;
     private String recordStudioName;
     private String recordStudioDescription;
     private List<Artist> affiliateArtists;
@@ -22,23 +24,19 @@ public class RecordStudio implements Serializable {
         this.affiliateArtists = builder.affiliateArtists;
     }
 
-    public String getRecordStudioID()
-    {
+    public int getRecordStudioID() {
         return recordStudioID;
     }
 
-    public String getRecordStudioName()
-    {
+    public String getRecordStudioName() {
         return recordStudioName;
     }
 
-    public String getRecordStudioDescription()
-    {
+    public String getRecordStudioDescription() {
         return recordStudioDescription;
     }
 
-    public List<Artist> getAffiliateArtists()
-    {
+    public List<Artist> getAffiliateArtists() {
         return affiliateArtists;
     }
 
@@ -47,22 +45,28 @@ public class RecordStudio implements Serializable {
     //              Inner Builder Class
     // **********************************************************************
 
-    public static class Builder
-    {
-        private String recordStudioID;
+    public static class Builder {
+
+
+        private int recordStudioID;
         private String recordStudioName;
         private String recordStudioDescription;
         private List<Artist> affiliateArtists;
 
-        public Builder(String recordStudioID, String recordStudioName, String recordStudioDescription, List<Artist> affiliateArtists)
-        {
+        public Builder(int recordStudioID, String recordStudioName, String recordStudioDescription, List<Artist> affiliateArtists) {
             this.recordStudioID = recordStudioID;
             this.recordStudioName = recordStudioName;
             this.recordStudioDescription = recordStudioDescription;
             this.affiliateArtists = affiliateArtists;
         }
 
-        public Builder copy(RecordStudio recordStudio){
+        public Builder(String recordStudioName, String recordStudioDescription, List<Artist> affiliateArtists) {
+            this.recordStudioName = recordStudioName;
+            this.recordStudioDescription = recordStudioDescription;
+            this.affiliateArtists = affiliateArtists;
+        }
+
+        public Builder copy(RecordStudio recordStudio) {
             this.recordStudioID = recordStudio.recordStudioID;
             this.recordStudioName = recordStudio.recordStudioName;
             this.recordStudioDescription = recordStudio.recordStudioDescription;
@@ -70,8 +74,7 @@ public class RecordStudio implements Serializable {
             return this;
         }
 
-        public RecordStudio build()
-        {
+        public RecordStudio build() {
             return new RecordStudio(this);
         }
     }

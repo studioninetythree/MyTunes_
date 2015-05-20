@@ -1,6 +1,6 @@
 package MyTunes.domain;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
 
@@ -9,17 +9,19 @@ import java.util.List;
  */
 @Embeddable
 public class Reviewer implements Serializable {
-    private String reviewerID;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(unique = true)
+    private int reviewerID;
     private String reviewerName;
     private List<Album> albumsReviewed;
 
-    public Reviewer(String reviewerID, String reviewerName)
-    {
-        this.reviewerID = reviewerID;
-        this.reviewerName = reviewerName;
+    public Reviewer(Builder builder) {
+        this.reviewerID = builder.reviewerID;
+        this.reviewerName = builder.reviewerName;
     }
 
-    public String getReviewerID() {
+    public int getReviewerID() {
         return reviewerID;
     }
 
@@ -32,28 +34,37 @@ public class Reviewer implements Serializable {
     //              Inner Builder Class
     // **********************************************************************
 
-    public static class Builder
-    {
-        private String reviewerID;
+    public static class Builder {
+
+
+        private int reviewerID;
         private String reviewerName;
         private List<Album> albumsReviewed;
 
-        public Builder(String reviewerID, String reviewerName, List<Album> albumsReviewed)
-        {
+        public Builder(int reviewerID, String reviewerName, List<Album> albumsReviewed) {
             this.reviewerID = reviewerID;
             this.reviewerName = reviewerName;
             this.albumsReviewed = albumsReviewed;
         }
 
-        public Builder copy(Reviewer reviewer){
+        public Builder(String reviewerName, List<Album> albumsReviewed) {
+            this.reviewerID = reviewerID;
+            this.reviewerName = reviewerName;
+            this.albumsReviewed = albumsReviewed;
+        }
+
+        public Builder(String name) {
+            this.reviewerName = name;
+        }
+
+        public Builder copy(Reviewer reviewer) {
             this.reviewerID = reviewer.reviewerID;
             this.reviewerName = reviewer.reviewerName;
             this.albumsReviewed = reviewer.albumsReviewed;
             return this;
         }
 
-        public Reviewer build()
-        {
+        public Reviewer build() {
             return new Reviewer(this);
         }
     }
